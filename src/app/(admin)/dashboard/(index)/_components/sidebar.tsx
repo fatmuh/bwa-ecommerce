@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import {Archive, Home, LineChart, Package, Package2, ShoppingCart, Users2} from "lucide-react";
+import {Archive, Home, LineChart, MapPin, Package, Package2, ShoppingCart, Users2} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import FormLogout from "@/app/(admin)/dashboard/(index)/_components/form-logout";
 
@@ -19,7 +19,7 @@ export default function Sidebar() {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Link
-                                href="#"
+                                href="/dashboard"
                                 className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             >
                                 <Home className="h-5 w-5"/>
@@ -39,6 +39,18 @@ export default function Sidebar() {
                             </Link>
                         </TooltipTrigger>
                         <TooltipContent side="right">Categories</TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Link
+                                href="/dashboard/locations"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                            >
+                                <MapPin className="h-5 w-5"/>
+                                <span className="sr-only">Locations</span>
+                            </Link>
+                        </TooltipTrigger>
+                        <TooltipContent side="right">Locations</TooltipContent>
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>

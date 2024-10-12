@@ -18,30 +18,30 @@ import React from 'react';
 import Link from "next/link";
 import {ActionResult} from "@/types";
 import {useFormState, useFormStatus} from "react-dom";
-import {postCategory, updateCategory} from "@/app/(admin)/dashboard/(index)/categories/lib/actions";
+import {postLocation, updateLocation} from "@/app/(admin)/dashboard/(index)/locations/lib/actions";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
-import {Category} from "@prisma/client";
+import {Location} from "@prisma/client";
 
 const initialState: ActionResult = {
     error: ''
 }
 
-interface FormCategoryProps {
+interface FormLocationProps {
     type?: 'ADD' | 'EDIT'
-    data?: Category | null
+    data?: Location | null
 }
 
 function SubmitButton() {
     const {pending} = useFormStatus()
     return (
-        <Button type="submit" size="sm" disabled={pending}>{pending ? "Loading..." : "Save Category"}</Button>
+        <Button type="submit" size="sm" disabled={pending}>{pending ? "Loading..." : "Save Location"}</Button>
     )
 }
 
-export default function FormCategory({data = null, type = 'ADD'}: FormCategoryProps) {
+export default function FormLocation({data = null, type = 'ADD'}: FormLocationProps) {
 
-    const updateCategoryWithId = (_: unknown, formData: FormData) => updateCategory(_, formData, data?.id)
-    const [state, formAction] = useFormState(type === "ADD" ? postCategory : updateCategoryWithId, initialState)
+    const updateLocationWithId = (_: unknown, formData: FormData) => updateLocation(_, formData, data?.id)
+    const [state, formAction] = useFormState(type === "ADD" ? postLocation : updateLocationWithId, initialState)
 
     return (
         <form action={formAction}>
@@ -49,13 +49,13 @@ export default function FormCategory({data = null, type = 'ADD'}: FormCategoryPr
                 <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
                     <div className="flex items-center gap-4">
                         <Button variant="outline" size="icon" className="h-7 w-7" asChild>
-                            <Link href="/dashboard/categories">
+                            <Link href="/dashboard/locations">
                                 <ChevronLeft className="h-4 w-4"/>
                                 <span className="sr-only">Back</span>
                             </Link>
                         </Button>
                         <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                            Category Controller
+                            Location Controller
                         </h1>
                         <div className="hidden items-center gap-2 md:ml-auto md:flex">
                             <Button variant="outline" size="sm">
@@ -68,7 +68,7 @@ export default function FormCategory({data = null, type = 'ADD'}: FormCategoryPr
                         <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
                             <Card x-chunk="dashboard-07-chunk-0" className="w-[500px]">
                                 <CardHeader>
-                                    <CardTitle>Category Details</CardTitle>
+                                    <CardTitle>Location Details</CardTitle>
                                     <CardDescription>
                                         Lipsum dolor sit amet, consectetur adipiscing elit
                                     </CardDescription>

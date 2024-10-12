@@ -23,13 +23,13 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-                                       children,
-                                   }: Readonly<{
+                                             children,
+                                         }: Readonly<{
     children: React.ReactNode;
 }>) {
     const {session} = await getUser();
 
-    if  (!session) {
+    if (!session) {
         return redirect('/dashboard/sign-in')
     }
 
@@ -39,9 +39,9 @@ export default async function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
         <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            <Sidebar />
+            <Sidebar/>
             <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-                <Header />
+                <Header/>
                 <main className="py-4 px-6">
                     {children}
                 </main>
