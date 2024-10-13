@@ -14,7 +14,7 @@ import { ActionResult } from '@/types';
 import { Brand } from '@prisma/client';
 
 function SubmitButton() {
-    const {pending} = useFormStatus()
+    const { pending } = useFormStatus()
     return (
         <Button type="submit" size="sm" disabled={pending}>{pending ? "Loading..." : "Save Brand"}</Button>
     )
@@ -29,19 +29,19 @@ interface FormBrandProps {
     data?: Brand | null
 }
 
-export default function FormBrand({data, type}: FormBrandProps) {
+export default function FormBrand({ data, type }: FormBrandProps) {
 
     const updateWithId = (_: unknown, formData: FormData) => updateBrand(_, formData, data?.id ?? 0)
     const [state, formAction] = useFormState(type === "ADD" ? postBrand : updateWithId, initialState)
 
-  return (
-    <form action={formAction}>
+    return (
+        <form action={formAction}>
             <div className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
                 <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
                     <div className="flex items-center gap-4">
                         <Button variant="outline" size="icon" className="h-7 w-7" asChild>
                             <Link href="/dashboard/brands">
-                                <ChevronLeft className="h-4 w-4"/>
+                                <ChevronLeft className="h-4 w-4" />
                                 <span className="sr-only">Back</span>
                             </Link>
                         </Button>
@@ -93,7 +93,7 @@ export default function FormBrand({data, type}: FormBrandProps) {
                                                 type="file"
                                                 name="image"
                                                 className="w-full"
-                                                // defaultValue={data?.name}
+                                            // defaultValue={data?.name}
                                             />
                                         </div>
                                         {/*<div className="grid gap-3">*/}
@@ -387,5 +387,5 @@ export default function FormBrand({data, type}: FormBrandProps) {
                 </div>
             </div>
         </form>
-  )
+    )
 }
