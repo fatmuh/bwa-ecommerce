@@ -4,9 +4,10 @@ import CardProduct from './card-product';
 
 interface ListProductsProps {
     title: ReactNode
+    isShowDetail: boolean
 }
 
-export default async function ListProducts({ title }: ListProductsProps) {
+export default async function ListProducts({ title, isShowDetail = true }: ListProductsProps) {
 
     const products = await getProducts();
 
@@ -14,7 +15,9 @@ export default async function ListProducts({ title }: ListProductsProps) {
         <div id="picked" className="flex flex-col gap-[30px]">
             <div className="flex items-center justify-between">
                 <h2 className="font-bold text-2xl leading-[34px]">{title}</h2>
-                <a href="catalog.html" className="p-[12px_24px] border border-[#E5E5E5] rounded-full font-semibold">Explore All</a>
+                {isShowDetail && (
+                    <a href="catalog.html" className="p-[12px_24px] border border-[#E5E5E5] rounded-full font-semibold">Explore All</a>
+                )}
             </div>
             <div className="grid grid-cols-5 gap-[30px]">
                 {products.map((item) => (
@@ -24,7 +27,7 @@ export default async function ListProducts({ title }: ListProductsProps) {
                         image_url: item.image_url,
                         name: item.name,
                         price: Number(item.price)
-                    }}/>
+                    }} />
                 ))}
             </div>
         </div>
