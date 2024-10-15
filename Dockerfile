@@ -8,15 +8,15 @@ WORKDIR /usr/src/app
 
 # Installing dependencies
 COPY package*.json /usr/src/app/
-RUN yarn install --frozen-lockfile
+RUN npm install
 # RUN npm audit fix
 
 # Copying source files
 COPY . /usr/src/app
 
 # Building app
-RUN yarn build
+RUN npm run build
 EXPOSE 3000
 
 # Running the app
-CMD "yarn" "start"
+CMD "npm" "run" "start"
