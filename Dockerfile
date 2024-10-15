@@ -11,6 +11,7 @@ COPY package*.json /usr/src/app/
 RUN npm install --frozen-lockfile
 # RUN npm audit fix
 
+COPY prisma /usr/src/app/prisma
 RUN npx prisma generate
 
 # Copying source files
