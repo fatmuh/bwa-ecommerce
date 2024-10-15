@@ -63,4 +63,5 @@ jobs:
             docker run -d \
               --restart always \
               --name $IMAGE_NAME \
+              -p 3000:3000 \
               $REGISTRY/$IMAGE_NAME:$IMAGE_TAG
