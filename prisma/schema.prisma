@@ -133,6 +133,8 @@ model OrderProduct {
   product    Product @relation(fields: [product_id], references: [id])
   order_id   Int
   order      Order   @relation(fields: [order_id], references: [id])
+  subtotal   BigInt  @db.BigInt
+  quantity   Int     @db.Integer
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
