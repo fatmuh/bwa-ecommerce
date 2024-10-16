@@ -70,13 +70,4 @@ jobs:
             docker image prune -f
             echo "Unused images deleted"
 
-            # Logout from Docker registry
-            docker logout $REGISTRY
-      - name: Deleted garbage-collection
-        uses: appleboy/ssh-action@v0.1.3
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            password: ${{ secrets.PASSPHRASE }}
-        script: |
             yes | doctl registry garbage-collection start ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }} --include-untagged-manifests
