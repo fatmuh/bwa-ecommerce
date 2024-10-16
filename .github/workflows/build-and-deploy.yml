@@ -68,3 +68,4 @@ jobs:
               
             # Remove old images except the current one
             docker image prune -a --filter "until=24h" -f || true
+            docker image prune --filter "dangling=true" -f
