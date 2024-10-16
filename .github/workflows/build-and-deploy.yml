@@ -67,5 +67,12 @@ jobs:
               $REGISTRY/$IMAGE_NAME:$IMAGE_TAG
               
             # Remove old images except the current one
-            docker image prune -a --filter "until=24h" -f || true
-            docker image prune --filter "dangling=true" -f
+            docker image prune -f
+            doctl registry garbage-collect registry-name --force
+            echo "Unused images deleted"
+
+            # Logout from Docker registry
+            docker logout $REGISTRY
+      
+      - name: Run Garbage Collection on DigitalOcean Registry
+        run: doctl registry garbage-collect ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }} --force
