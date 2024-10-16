@@ -75,3 +75,4 @@ jobs:
 
             # Logout from Docker registry
             docker logout $REGISTRY
+            
