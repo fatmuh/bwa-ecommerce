@@ -73,6 +73,11 @@ jobs:
 
             # Logout from Docker registry
             docker logout $REGISTRY
+
+      - name: Install doctl (DigitalOcean CLI)
+        run: |
+          curl -sL https://github.com/digitalocean/doctl/releases/download/v1.98.0/doctl-1.98.0-linux-amd64.tar.gz | tar -xzv
+          sudo mv doctl /usr/local/bin/
       
       - name: Run Garbage Collection on DigitalOcean Registry
         run: doctl registry garbage-collect ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }} --force
