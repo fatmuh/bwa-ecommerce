@@ -71,7 +71,7 @@ jobs:
             doctl registry garbage-collect registry-name --force
             echo "Unused images deleted"
 
-            doctl registry garbage-collect ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }} --force
+            doctl registry garbage-collection start [--include-untagged-manifests] [${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}]
 
             # Logout from Docker registry
             docker logout $REGISTRY
