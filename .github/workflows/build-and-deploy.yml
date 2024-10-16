@@ -51,7 +51,7 @@ jobs:
             export GITHUB_SHA=$(echo $GITHUB_SHA | head -c7)
             
             # Login to registry
-            docker login -u ${{ secrets.DIGITALOCEAN_USERNAME }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} $REGISTRY
+            echo "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" | docker login $REGISTRY -u ${{ secrets.DIGITALOCEAN_USERNAME }} --password-stdin
             
             # Stop running container
             docker stop $IMAGE_NAME || true
