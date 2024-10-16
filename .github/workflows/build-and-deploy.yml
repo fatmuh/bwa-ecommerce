@@ -69,8 +69,9 @@ jobs:
             # Remove old images except the current one
             docker image prune -f
             echo "Unused images deleted"
-
+            
             yes | doctl registry garbage-collection start ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }} --include-untagged-manifests
+            echo "Deleted garbage-collection"
 
             # Logout from Docker registry
             docker logout $REGISTRY
