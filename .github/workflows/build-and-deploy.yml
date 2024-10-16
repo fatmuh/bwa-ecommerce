@@ -70,4 +70,4 @@ jobs:
             docker image prune -f
             echo "Unused images deleted"
 
-            yes | doctl registry garbage-collection start ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }} --include-untagged-manifests
+            doctl registry garbage-collection start fatmuh-docker --include-untagged-manifests --force
